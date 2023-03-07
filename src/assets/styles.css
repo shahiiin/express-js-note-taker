@@ -1,0 +1,23 @@
+.wrapper {
+  padding: 5px;
+  box-shadow: 0 0 3px #c4c4c4;
+}
+.wrapper .header h1 {
+  padding: 2rem;
+  background-color: #002db3;
+  color: #fff;
+}
+.wrapper .card .header {
+  background-color: #002db3c4;
+  color: #fff;
+  padding: 1rem;
+}
+.wrapper .card .content {
+  padding: 1rem;
+}
+.wrapper .card .content div {
+  border-bottom: 1px solid #c4c4c4;
+}
+.wrapper .card .content div:last-child {
+  border-bottom: none;
+}

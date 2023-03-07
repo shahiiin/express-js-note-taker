@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+    <link rel="stylesheet" href="./assets/styles.css" />
+
+    <title>My Team</title>
+  </head>
+  <body>
+    <div class="container">
+      <div class="row">
+        <div class="wrapper col-12">
+          <div class="header">
+            <h1 class="text-center">My team</h1>
+          </div>
+          <div class="content row" id="page-content"></div>
+        </div>
+      </div>
+    </div>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
+      crossorigin="anonymous"
+    ></script>
+
+    <script type="module" src="./index.js"></script>
+    <script type="module">
+      function fetchData() {
+        fetch("data.json")
+          .then((res) => res.json())
+          .then((data) => {
+            data.map((item) => {
+              document.getElementById("page-content").insertAdjacentHTML(
+                "beforeend",
+                `<div class="col-md-4 mb-2">
+                    <div class="card">
+                        <div class="header">
+                            <h3>${item.name}</h3>
+                            ${item.role} <span class="${
+                  item.role == "Manager"
+                    ? "fa fa-coffee"
+                    : item.role == "Intern"
+                    ? "fa fa-graduation-cap "
+                    : "fa fa-pencil"
+                }"></span>
+                        </div>
+                        <div class="content">
+                            <div class="id">id :${item.id}</div> 
+                            <div class="email">email :<a href="mailto:${
+                              item.email
+                            }">${item.email}</a></div>
+                            ${
+                              item.role == "Manager"
+                                ? '<div class="office-number">officeNumber :' +
+                                  item.officeNumber +
+                                  "</div>"
+                                : item.role == "Intern"
+                                ? '<div class="school-number">school :' +
+                                  item.school +
+                                  "</div>"
+                                : '<div class="github-number">github :<a href="' +
+                                  item.github +
+                                  '" target="_blank">' +
+                                  item.github +
+                                  "</a></div>"
+                            }
+
+                        </div>
+                     </div>
+                </div>`
+              );
+            });
+          });
+      }
+
+      fetchData();
+    </script>
+  </body>
+</html>
